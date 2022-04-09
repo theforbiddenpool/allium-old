@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ['jest'],
   parserOptions: {
-    project: 'ui/tsconfig.json',
+    project: '**/tsconfig.json',
   },
   extends: [
     'next',
