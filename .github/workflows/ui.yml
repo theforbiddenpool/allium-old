@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: '14.x'
           cache: 'yarn'
+          cache-dependency-path: ui/yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Run tests
@@ -32,6 +33,7 @@ jobs:
         with:
           node-version: '14.x'
           cache: 'yarn'
+          cache-dependency-path: ui/yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Build
@@ -45,6 +47,7 @@ jobs:
         with:
           node-version: '14.x'
           cache: 'yarn'
+          cache-dependency-path: ui/yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Lint
