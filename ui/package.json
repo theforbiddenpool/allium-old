@@ -2,6 +2,7 @@
   "name": "allium-ui",
   "version": "0.1.0",
   "description": "an app to help you keep track of your pantry, and to save your favorite recipes. UI for the app",
+  "repository": "https://github.com/theforbiddenpool/allium",
   "author": "theforbiddenpool <contact@theforbiddenpool.com>",
   "license": "MIT",
   "private": true,
