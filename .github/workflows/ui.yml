@@ -3,7 +3,7 @@ name: ci-ui
 on:
   push:
     paths:
-      - ui/**
+      - 'ui/**'
 
 defaults:
   run:
