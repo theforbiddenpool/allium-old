@@ -1,7 +1,7 @@
 {
   "name": "allium-server",
   "version": "0.1",
-  "description": "n app to help you keep track of your pantry, and to save your favorite recipes. Server for the app",
+  "description": "an app to help you keep track of your pantry, and to save your favorite recipes. Server for the app",
   "main": "index.js",
   "repository": "https://github.com/theforbiddenpool/allium",
   "author": "theforbiddenpool <contact@theforbiddenpool.com>",
