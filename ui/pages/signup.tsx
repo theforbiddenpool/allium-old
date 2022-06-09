@@ -8,11 +8,26 @@ function Home() {
       <HeadTitle title="Sign Up" />
       <Typography variant="h2" component="h1" align="center">Sign Up</Typography>
       <Formik
-        initialValues={{ username: '', email: '', password: '' }}
+        initialValues={{
+          name: '', username: '', email: '', password: '',
+        }}
         onSubmit={(values) => console.log('submitted', values)}
       >
         { (formik) => (
           <form onSubmit={formik.handleSubmit}>
+            <TextField
+              id="name"
+              type="text"
+              label="Name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={formik.touched.name && formik.errors.name}
+              required
+              fullWidth
+              margin="normal"
+            />
+
             <TextField
               id="username"
               type="text"
