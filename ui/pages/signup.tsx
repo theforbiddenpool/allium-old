@@ -1,5 +1,7 @@
-import { Button, TextField, Typography } from '@mui/material';
 import { Formik } from 'formik';
+import { Button, TextField, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Save as SaveIcon } from '@mui/icons-material';
 import { HeadTitle } from '../components/layout';
 
 function Home() {
@@ -11,7 +13,10 @@ function Home() {
         initialValues={{
           name: '', username: '', email: '', password: '',
         }}
-        onSubmit={(values) => console.log('submitted', values)}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log('submitted', values);
+          setTimeout(() => { setSubmitting(false); }, 400);
+        }}
       >
         { (formik) => (
           <form onSubmit={formik.handleSubmit}>
@@ -67,9 +72,23 @@ function Home() {
               margin="normal"
             />
 
-            <Button color="primary" variant="contained" fullWidth type="submit">
-              Submit
-            </Button>
+            { formik.isSubmitting
+              ? (
+                <LoadingButton
+                  loading
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  variant="outlined"
+                >
+                  Save
+                </LoadingButton>
+              )
+              : (
+                <Button color="primary" variant="contained" fullWidth type="submit">
+                  Submit
+                </Button>
+              )}
+
           </form>
         )}
 
