@@ -1,4 +1,6 @@
+import { Button } from '@mui/material';
 import Head from 'next/head';
+import Link from 'next/link';
 import { Main } from '../components';
 
 function Home() {
@@ -10,6 +12,14 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main />
+
+      <Link href="/signup" passHref>
+        <Button color="primary" variant="contained" type="button">Sign Up</Button>
+      </Link>
+      <Link href="/login" passHref>
+        <Button color="primary" variant="contained" type="button">Login</Button>
+      </Link>
+
     </div>
   );
 }
