@@ -4,7 +4,7 @@ import { LoadingButton } from '@mui/lab';
 import { Save as SaveIcon } from '@mui/icons-material';
 import { HeadTitle } from '../components/layout';
 
-function Home() {
+function SignUp() {
   return (
     <div style={{ padding: '1rem' }}>
       <HeadTitle title="Sign Up" />
@@ -98,4 +98,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default SignUp;
