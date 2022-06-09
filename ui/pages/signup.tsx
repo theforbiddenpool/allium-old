@@ -81,7 +81,7 @@ function Home() {
                   variant="outlined"
                   fullWidth
                 >
-                  Save
+                  Submit
                 </LoadingButton>
               )
               : (
