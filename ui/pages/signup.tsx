@@ -79,6 +79,7 @@ function Home() {
                   loadingPosition="start"
                   startIcon={<SaveIcon />}
                   variant="outlined"
+                  fullWidth
                 >
                   Save
                 </LoadingButton>
