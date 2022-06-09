@@ -6,7 +6,7 @@ import { HeadTitle } from '../components/layout';
 
 function Home() {
   return (
-    <div>
+    <div style={{ padding: '1rem' }}>
       <HeadTitle title="Sign Up" />
       <Typography variant="h2" component="h1" align="center">Sign Up</Typography>
       <Formik
