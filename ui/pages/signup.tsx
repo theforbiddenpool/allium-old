@@ -1,11 +1,8 @@
 import { Formik } from 'formik';
-import {
-  Button, TextField, Typography, Link as MUILink,
-} from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Save as SaveIcon } from '@mui/icons-material';
-import Link from 'next/link';
-import { HeadTitle } from '../components/layout';
+import { HeadTitle, Link } from '../components/layout';
 
 function SignUp() {
   return (
@@ -96,9 +93,7 @@ function SignUp() {
             <div>
               Already have an account?
               {' '}
-              <Link href="/login" passHref>
-                <MUILink underline="none">Log In!</MUILink>
-              </Link>
+              <Link href="/login">Log In!</Link>
             </div>
 
           </form>

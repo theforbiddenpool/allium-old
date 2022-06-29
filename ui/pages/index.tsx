@@ -1,7 +1,6 @@
-import { Button } from '@mui/material';
 import Head from 'next/head';
-import Link from 'next/link';
 import { Main } from '../components';
+import { Link } from '../components/layout';
 
 function Home() {
   return (
@@ -13,13 +12,8 @@ function Home() {
       </Head>
       <Main />
 
-      <Link href="/signup" passHref>
-        <Button color="primary" variant="contained" type="button">Sign Up</Button>
-      </Link>
-      <Link href="/login" passHref>
-        <Button color="primary" variant="contained" type="button">Login</Button>
-      </Link>
-
+      <Link type="button" href="/signup" variant="contained">Sign Up</Link>
+      <Link type="button" href="/login" variant="contained">Login</Link>
     </div>
   );
 }
