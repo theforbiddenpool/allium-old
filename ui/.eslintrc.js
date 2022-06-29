@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
     'jsx-a11y/label-has-associated-control': [2, {
       assert: 'either',
     }],
