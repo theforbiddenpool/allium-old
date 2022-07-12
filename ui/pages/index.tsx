@@ -12,8 +12,8 @@ function Home() {
       </Head>
       <Main />
 
-      <Link type="button" href="/signup" variant="contained">Sign Up</Link>
-      <Link type="button" href="/login" variant="contained">Login</Link>
+      <Link type="button" href="/signup" variant="solid">Sign Up</Link>
+      <Link type="button" href="/login" variant="solid">Login</Link>
     </div>
   );
 }

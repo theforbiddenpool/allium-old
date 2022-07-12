@@ -1,14 +1,15 @@
 import { Formik } from 'formik';
-import { Button, TextField, Typography } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import { Save as SaveIcon } from '@mui/icons-material';
+import {
+  FormControl, FormErrorMessage, FormLabel, Heading, Input, Button,
+} from '@chakra-ui/react';
 import { HeadTitle, Link } from '../components/layout';
 
 function SignUp() {
   return (
     <div style={{ padding: '1rem' }}>
       <HeadTitle title="Sign Up" />
-      <Typography variant="h2" component="h1" align="center">Sign Up</Typography>
+      <Heading>Log In</Heading>
       <Formik
         initialValues={{
           name: '', username: '', email: '', password: '',
@@ -20,75 +21,66 @@ function SignUp() {
       >
         { (formik) => (
           <form onSubmit={formik.handleSubmit}>
-            <TextField
-              id="name"
-              type="text"
-              label="Name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
-              required
-              fullWidth
-              margin="normal"
-            />
+            <FormControl isInvalid={formik.touched.name && Boolean(formik.errors.name)}>
+              <FormLabel htmlFor="name">Name</FormLabel>
+              <Input
+                id="name"
+                type="text"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                required
+              />
+              {formik.touched.name && Boolean(formik.errors.name)
+                && <FormErrorMessage>{formik.errors.name}</FormErrorMessage>}
+            </FormControl>
 
-            <TextField
-              id="username"
-              type="text"
-              label="Username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              error={formik.touched.username && Boolean(formik.errors.username)}
-              helperText={formik.touched.username && formik.errors.username}
-              required
-              fullWidth
-              margin="normal"
-            />
+            <FormControl isInvalid={formik.touched.username && Boolean(formik.errors.username)}>
+              <FormLabel htmlFor="username">Username</FormLabel>
+              <Input
+                id="username"
+                type="text"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                required
+              />
+              {formik.touched.username && Boolean(formik.errors.username)
+                && <FormErrorMessage>{formik.errors.username}</FormErrorMessage>}
+            </FormControl>
 
-            <TextField
-              id="email"
-              type="email"
-              label="Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-              required
-              fullWidth
-              margin="normal"
-            />
+            <FormControl isInvalid={formik.touched.email && Boolean(formik.errors.email)}>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <Input
+                id="email"
+                type="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                required
+              />
+              {formik.touched.email && Boolean(formik.errors.email)
+                && <FormErrorMessage>{formik.errors.email}</FormErrorMessage>}
+            </FormControl>
 
-            <TextField
-              id="password"
-              type="password"
-              label="Password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-              required
-              fullWidth
-              margin="normal"
-            />
+            <FormControl isInvalid={formik.touched.password && Boolean(formik.errors.password)}>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Input
+                id="password"
+                type="text"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                required
+              />
+              {formik.touched.password && Boolean(formik.errors.password)
+                && <FormErrorMessage>{formik.errors.password}</FormErrorMessage>}
+            </FormControl>
 
-            { formik.isSubmitting
-              ? (
-                <LoadingButton
-                  loading
-                  loadingPosition="start"
-                  startIcon={<SaveIcon />}
-                  variant="outlined"
-                  fullWidth
-                >
-                  Submit
-                </LoadingButton>
-              )
-              : (
-                <Button color="primary" variant="contained" fullWidth type="submit">
-                  Submit
-                </Button>
-              )}
+            <Button
+              type="submit"
+              variant="solid"
+              leftIcon={<SaveIcon />}
+              isLoading={formik.isSubmitting}
+            >
+              Sign Up
+            </Button>
 
             <div>
               Already have an account?

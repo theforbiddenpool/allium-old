@@ -1,110 +1,77 @@
-import React, { forwardRef } from 'react';
-import { styled } from '@mui/material/styles';
+import React from 'react';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
-import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button';
+import {
+  Button as ChakraButton,
+  ButtonProps as ChakraButtonProps,
+  Link as ChakraLink,
+  LinkProps as ChakraLinkProps,
+} from '@chakra-ui/react';
 
-const Anchor = styled('a')({});
+type ButtonLink =
+  Exclude<ChakraButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement>>
+  & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-interface NextLinkComposedProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-  Omit<NextLinkProps, 'href' | 'as' | 'passHref' | 'onClick' | 'onMouseEnter'> {
-  to: NextLinkProps['href'], // renamed from href to avoid prop collision with MuiLink's href
-}
-
-const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
-  // eslint-disable-next-line prefer-arrow-callback
-  function NextLinkComposed(props, ref) {
-    const {
-      to, prefetch, replace, scroll, shallow, locale, ...otherProps
-    } = props;
-
-    return (
-      <NextLink
-        href={to}
-        prefetch={prefetch}
-        replace={replace}
-        scroll={scroll}
-        shallow={shallow}
-        locale={locale}
-        passHref
-      >
-        <Anchor ref={ref} {...otherProps} />
-      </NextLink>
-    );
-  },
-);
+export type LinkProps =
+  Omit<NextLinkProps, 'as' | 'passHref'>
+  & ((Omit<ChakraLinkProps, 'href'> & { type?: 'link' }) | (ButtonLink & { type: 'button' }));
 
 /**
- * There are multiple ts-ignores here because I can't seem to make work this thing without
- * TypeScript errors. Maybe one day I'll try to fix it, but right now I've spend way too
- * much time trying to make this shit work.
+ * There are two @ts-ignore because the ChakraButton, even though having the 'as' property, it
+ * expects to receive certain props as HTMLButtonElement. I cannot be arsed to try to fix this,
+ * nor I know how to.
  */
-export type LinkProps = Omit<NextLinkComposedProps, 'to'> &
-((Omit<MuiLinkProps, 'href' | 'component'> & { type?: 'link' }) | (Omit<MuiButtonProps, 'href'> & { type: 'button' })) & {
-  href: NextLinkProps['href'];
-};
+function Link({ type = 'link', ...props }: LinkProps) {
+  const {
+    href, prefetch, replace, scroll, shallow, locale, role, ...chakraProps
+  } = props;
 
-const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  // eslint-disable-next-line prefer-arrow-callback
-  function Link({ type = 'link', ...props }, ref) {
-    const {
-      href, prefetch, replace, scroll, shallow, locale, role, ...otherProps
-    } = props;
+  const nextjsProps = {
+    href, prefetch, replace, scroll, shallow, locale,
+  };
 
-    const nextjsProps = {
-      to: href, prefetch, replace, scroll, shallow, locale,
-    };
+  const isExternal = typeof href === 'string' && (href.startsWith('http') || href.startsWith('mailto:'));
 
-    const isExternal = typeof href === 'string' && (href.startsWith('http') || href.startsWith('mailto:'));
-
-    switch (type) {
-      case 'button':
-        if (isExternal) {
-          return (
-            // @ts-ignore
-            <MuiButton
-              href={href}
-              ref={ref}
-              {...otherProps}
-            />
-          );
-        }
-
+  switch (type) {
+    case 'button':
+      if (isExternal) {
         return (
-          <MuiButton
-            component={NextLinkComposed}
-            // @ts-ignore
-            ref={ref}
-            {...nextjsProps}
-            {...otherProps}
+          // @ts-ignore
+          <ChakraButton
+            as="a"
+            href={href}
+            {...chakraProps}
           />
         );
-      case 'link':
-        if (isExternal) {
-          return (
-            // @ts-ignore
-            <MuiLink
-              href={href}
-              ref={ref}
-              {...otherProps}
-            />
-          );
-        }
+      }
 
+      return (
+        <NextLink {...nextjsProps} passHref>
+          { /** @ts-ignore */}
+          <ChakraButton
+            as="a"
+            {...chakraProps}
+          />
+        </NextLink>
+      );
+    case 'link':
+      if (isExternal) {
         return (
-          <MuiLink
-            component={NextLinkComposed}
-            // @ts-ignore
-            ref={ref}
-            {...nextjsProps}
-            {...otherProps}
+          <ChakraLink
+            href={href}
+            {...chakraProps}
           />
         );
-      default:
-        return null;
-    }
-  },
-);
+      }
+
+      return (
+        <NextLink {...nextjsProps} passHref>
+          <ChakraLink {...chakraProps} />
+        </NextLink>
+
+      );
+    default:
+      return null;
+  }
+}
 
 export default Link;
