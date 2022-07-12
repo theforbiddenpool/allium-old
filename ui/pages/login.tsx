@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Save as SaveIcon } from '@mui/icons-material';
+import { MdLogin } from 'react-icons/md';
 import {
   Button,
   FormControl, FormErrorMessage, FormLabel, Heading, Input,
@@ -51,7 +51,7 @@ function LogIn() {
             <Button
               type="submit"
               variant="solid"
-              leftIcon={<SaveIcon />}
+              leftIcon={<MdLogin />}
               isLoading={formik.isSubmitting}
             >
               Log In

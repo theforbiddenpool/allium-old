@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Save as SaveIcon } from '@mui/icons-material';
+import { MdLogin } from 'react-icons/md';
 import {
   FormControl, FormErrorMessage, FormLabel, Heading, Input, Button,
 } from '@chakra-ui/react';
@@ -76,7 +76,7 @@ function SignUp() {
             <Button
               type="submit"
               variant="solid"
-              leftIcon={<SaveIcon />}
+              leftIcon={<MdLogin />}
               isLoading={formik.isSubmitting}
             >
               Sign Up
