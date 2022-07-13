@@ -1,15 +1,20 @@
-import { Formik } from 'formik';
+import { Formik, FormikValues } from 'formik';
 import { Button } from '@chakra-ui/react';
 import { MdLogin } from 'react-icons/md';
 import { FormikInput } from '../layout';
 
-function SignUpForm() {
+interface SignUpFormProps {
+  onSubmit?: (values: FormikValues) => void
+}
+
+function SignUpForm({ onSubmit }: SignUpFormProps) {
   return (
     <Formik
       initialValues={{
         name: '', username: '', email: '', password: '',
       }}
       onSubmit={(values, { setSubmitting }) => {
+        onSubmit?.(values);
         console.log('submitted', values);
         setTimeout(() => { setSubmitting(false); }, 400);
       }}
