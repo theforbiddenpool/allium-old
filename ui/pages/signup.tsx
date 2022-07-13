@@ -1,6 +1,6 @@
 import { Heading } from '@chakra-ui/react';
-import { HeadTitle, Link } from '../components/layout';
 import { SignUpForm } from '../components';
+import { HeadTitle, Link } from '../components/layout';
 
 function SignUp() {
   return (
