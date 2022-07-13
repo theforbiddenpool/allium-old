@@ -6,13 +6,15 @@ function SignUp() {
   return (
     <div style={{ padding: '1rem' }}>
       <HeadTitle title="Sign Up" />
-      <Heading>Log In</Heading>
-      <SignUpForm />
-      <div>
-        Already have an account?
-        {' '}
-        <Link href="/login">Log In!</Link>
-      </div>
+      <main>
+        <Heading>Log In</Heading>
+        <SignUpForm />
+        <div>
+          Already have an account?
+          {' '}
+          <Link href="/login">Log In!</Link>
+        </div>
+      </main>
     </div>
   );
 }

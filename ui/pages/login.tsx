@@ -6,13 +6,15 @@ function LogIn() {
   return (
     <div style={{ padding: '1rem' }}>
       <HeadTitle title="Login In" />
-      <Heading>Log In</Heading>
-      <LoginForm />
-      <div>
-        Don&apos;t have an account?
-        {' '}
-        <Link href="/signup">Sign Up!</Link>
-      </div>
+      <main>
+        <Heading>Log In</Heading>
+        <LoginForm />
+        <div>
+          Don&apos;t have an account?
+          {' '}
+          <Link href="/signup">Sign Up!</Link>
+        </div>
+      </main>
     </div>
   );
 }
