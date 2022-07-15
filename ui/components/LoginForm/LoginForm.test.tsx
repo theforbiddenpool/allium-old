@@ -15,7 +15,7 @@ describe('Login Form', () => {
 
     await waitFor(() => expect(handleSubmit).toHaveBeenCalledWith({
       username: 'john',
-      password: 'password123',
+      password: '$Password123',
     }));
   });
 

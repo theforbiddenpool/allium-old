@@ -19,7 +19,7 @@ describe('Sign Up Form', () => {
       name: 'John',
       username: 'john',
       email: 'john@example.com',
-      password: 'password123',
+      password: '$Password123',
     }));
   });
 
