@@ -1,28 +1,12 @@
 import { Formik, FormikValues } from 'formik';
-import * as Yup from 'yup';
 import { Button } from '@chakra-ui/react';
 import { MdLogin } from 'react-icons/md';
+import { signUpSchema } from '../../utils/validation/schemas';
 import { FormikInput } from '../layout';
 
 interface SignUpFormProps {
   onSubmit?: (values: FormikValues) => void
 }
-
-const schema = Yup.object({
-  name: Yup.string()
-    .min(3, 'Name must contain at least 3 characters')
-    .max(250, 'Name must be 250 characters or less')
-    .required('Name is required'),
-  username: Yup.string()
-    .max(100, 'Username must be 100 characters or less')
-    .required('Username is required'),
-  email: Yup.string().email('Invalid email address')
-    .required('Email is required'),
-  password: Yup.string()
-    .min(8, 'Password must contain at least 8 characters')
-    .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/, 'Password is too weak')
-    .required('Password is required'),
-});
 
 function SignUpForm({ onSubmit }: SignUpFormProps) {
   return (
@@ -30,7 +14,7 @@ function SignUpForm({ onSubmit }: SignUpFormProps) {
       initialValues={{
         name: '', username: '', email: '', password: '',
       }}
-      validationSchema={schema}
+      validationSchema={signUpSchema}
       onSubmit={(values, { setSubmitting }) => {
         onSubmit?.(values);
         console.log('submitted', values);
