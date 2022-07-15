@@ -24,15 +24,17 @@ describe('Sign Up Form', () => {
   });
 
   test('validation schema is correct', async () => {
-    render(<SignUpForm />);
+    const handleSubmit = jest.fn();
+    render(<SignUpForm onSubmit={handleSubmit} />);
     const user = userEvent.setup();
 
-    const submitButton = screen.getByRole('button', { name: /sign up/i });
+    // submit the form
+    await user.click(screen.getByRole('button', { name: /sign up/i }));
 
-    await user.click(submitButton);
-
-    // required fields
     await waitFor(() => {
+      expect(handleSubmit).not.toHaveBeenCalled();
+
+      // required fields
       expect(screen.queryByText(/^name is required/i)).toBeInTheDocument();
       expect(screen.queryByText(/username is required/i)).toBeInTheDocument();
       expect(screen.queryByText(/email is required/i)).toBeInTheDocument();
