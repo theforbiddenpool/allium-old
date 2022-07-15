@@ -1,6 +1,7 @@
 import { Formik, FormikValues } from 'formik';
 import { Button } from '@chakra-ui/react';
 import { MdLogin } from 'react-icons/md';
+import { loginSchema } from '../../utils/validation/schemas';
 import { FormikInput } from '../layout';
 
 interface LoginFormProps {
@@ -13,6 +14,7 @@ function LoginForm({ onSubmit }: LoginFormProps) {
       initialValues={{
         username: '', password: '',
       }}
+      validationSchema={loginSchema}
       onSubmit={(values, { setSubmitting }) => {
         onSubmit?.(values);
         console.log('submitted', values);

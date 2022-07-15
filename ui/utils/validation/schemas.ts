@@ -16,6 +16,9 @@ export const password = string()
   .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/, 'Password is too weak')
   .required('Password is required');
 
+export const passwordWithoutStrength = string()
+  .required('Password is required');
+
 export const signUpSchema = object({
   name,
   username,
@@ -23,6 +26,11 @@ export const signUpSchema = object({
   password,
 });
 
+export const loginSchema = object({
+  username,
+  password: passwordWithoutStrength,
+});
+
 export default {
-  signUpSchema,
+  signUpSchema, loginSchema,
 };
