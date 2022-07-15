@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Main } from '../components';
+import { Link } from '../components/layout';
 
 function Home() {
   return (
@@ -10,6 +11,9 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main />
+
+      <Link type="button" href="/signup" variant="solid">Sign Up</Link>
+      <Link type="button" href="/login" variant="solid">Login</Link>
     </div>
   );
 }
