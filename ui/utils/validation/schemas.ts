@@ -1,7 +1,6 @@
 import { object, string } from 'yup';
 
 export const name = string()
-  .min(3, 'Name must contain at least 3 characters')
   .max(250, 'Name must be 250 characters or less')
   .required('Name is required');
 
@@ -9,7 +8,7 @@ export const username = string()
   .max(100, 'Username must be 100 characters or less')
   .required('Username is required');
 
-export const email = string().email()
+export const email = string().email('Email must be valid')
   .required('Email is required');
 
 export const password = string()
