@@ -6,6 +6,7 @@ import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react';
+import { FiExternalLink } from 'react-icons/fi';
 
 type ButtonLink =
   Exclude<ChakraButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement>>
@@ -20,7 +21,7 @@ export type LinkProps =
  * expects to receive certain props as HTMLButtonElement. I cannot be arsed to try to fix this,
  * nor I know how to.
  */
-function Link({ type = 'link', ...props }: LinkProps) {
+function Link({ type = 'link', children, ...props }: LinkProps) {
   const {
     href, prefetch, replace, scroll, shallow, locale, role, ...chakraProps
   } = props;
@@ -39,8 +40,14 @@ function Link({ type = 'link', ...props }: LinkProps) {
           <ChakraButton
             as="a"
             href={href}
+            target="_blank"
+            rel="noopener"
             {...chakraProps}
-          />
+          >
+            {children}
+            {' '}
+            <FiExternalLink style={{ marginLeft: '0.33em' }} />
+          </ChakraButton>
         );
       }
 
@@ -50,7 +57,9 @@ function Link({ type = 'link', ...props }: LinkProps) {
           <ChakraButton
             as="a"
             {...chakraProps}
-          />
+          >
+            {children}
+          </ChakraButton>
         </NextLink>
       );
     case 'link':
@@ -58,14 +67,19 @@ function Link({ type = 'link', ...props }: LinkProps) {
         return (
           <ChakraLink
             href={href}
+            isExternal
             {...chakraProps}
-          />
+          >
+            {children}
+            {' '}
+            <FiExternalLink style={{ display: 'inline', verticalAlign: 'middle' }} />
+          </ChakraLink>
         );
       }
 
       return (
         <NextLink {...nextjsProps} passHref>
-          <ChakraLink {...chakraProps} />
+          <ChakraLink {...chakraProps}>{children}</ChakraLink>
         </NextLink>
 
       );
